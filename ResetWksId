@@ -1,0 +1,38 @@
+On Error Resume Next
+ 
+strComputer = "."
+Set objWMIService = GetObject("winmgmts:" _
+    & "{impersonationLevel=impersonate}!\\" & strComputer _
+    & "\root\faronics")
+
+Set objwbemobject = objWMIService.Get("FaronicsWebAgent_v1")
+
+If IsNull(objwbemobject) = false Then 
+	objwbemobject.Path_.Class = "FaronicsWebAgent_v1" 
+	objwbemobject.put_
+	objWMIService.delete  "FaronicsWebAgent_v1"
+End if
+
+' On Error Goto 0
+Dim objService
+Dim strService,waitTime
+Dim svcState
+
+strService="FWASvc"
+waitTime=3000
+
+Set objWMIService2 = GetObject("winmgmts:" _
+    & "{impersonationLevel=impersonate}!\\" & strComputer & "\root\cimv2")
+	
+For Each objService In objWMIService2.ExecQuery("Select * from Win32_Service Where Name = '"_
+&strService&"'")
+
+	objService.StopService()
+	WSCript.Sleep waitTime
+	objService.StartService()
+	WSCript.Sleep waitTime
+	objService.StopService()
+	WSCript.Sleep waitTime
+	objService.StartService()
+Next
+
