@@ -1,1 +1,1 @@
-Manage-bde -status -computername HOSTNAME
+Manage-bde -status -computername
