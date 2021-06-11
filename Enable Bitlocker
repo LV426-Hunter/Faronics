@@ -1,2 +1,2 @@
-$SecureString = ConvertTo-SecureString "35903590" -AsPlainText -Force
+$SecureString = ConvertTo-SecureString "359035903590" -AsPlainText -Force
 Enable-BitLocker -MountPoint c: -EncryptionMethod Aes256 -UsedSpaceOnly -Pin $SecureString -TPMandPinProtector
