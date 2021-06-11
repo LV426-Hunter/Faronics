@@ -1,1 +1,1 @@
-Enable-BitLocker -MountPoint "C:" -EncryptionMethod Aes256 -UsedSpaceOnly
+manage-bde –on c:
