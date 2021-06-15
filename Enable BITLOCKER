@@ -1,1 +1,2 @@
-manage-bde.exe –on c:
+manage-bde –protectors -add C: -startupkey E:
+manage-bde -on C:
